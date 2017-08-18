@@ -96,7 +96,9 @@ class CRM
   end
 
   def display_all_contacts
-      puts Contact.all
+      Contact.all.each do |contact|
+      puts  "full_name = #{contact.full_name}"
+      end
   end
 
   def search_by_attribute

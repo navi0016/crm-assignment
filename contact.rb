@@ -25,8 +25,7 @@ class Contact
 
   # This method should return all of the existing contacts
   def self.all
-    @@contacts.to_s
-
+    @@contacts
   end
 
   def id
