@@ -25,7 +25,8 @@ class Contact
 
   # This method should return all of the existing contacts
   def self.all
-    @@contacts
+    @@contacts.to_s
+
   end
 
   def id
@@ -83,16 +84,18 @@ class Contact
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by(attribute,value)
+      matched_contact = nil
     @@contacts.each do |contact|
       if attribute == 'first_name' && contact.first_name == value
-        puts "#{contact.full_name}"
+         matched_contact = contact
       elsif attribute == 'last_name' && contact.last_name == value
-        puts "#{contact.full_name}"
+        matched_contact = contact
       elsif attribute == 'email' && contact.email == value
-        puts "#{contact.full_name}"
+        matched_contact = contact
       else
       end
     end
+    return matched_contact
   end
 
   # This method should delete all of the contacts
@@ -104,10 +107,6 @@ class Contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
     @@contacts.delete(self)
-    # @@contacts.each do |contacts|
-    #   contacts.delete
-    # end
-
   end
 
   # Feel free to add other methods here, if you need them.
@@ -134,7 +133,8 @@ end
 # p contact
 
 bobby = Contact.create('bobby','brown','bobby@brown','wow')
-ruby = Contact.create('ruby','rails','ruby@rails','amazing')
+sue = Contact.create('sue','suzy','sue@suzy','cool')
+jim = Contact.create('jim','jimmy','jim@jimmy','amazing')
 # bobby.update('first_name','bill')
 # bobby.update('last_name','clinton')
 
@@ -146,6 +146,6 @@ ruby = Contact.create('ruby','rails','ruby@rails','amazing')
 
 # p Contact.all
 
-bobby.delete
+# bobby.delete
 
-p Contact.all
+# p Contact.all
