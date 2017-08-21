@@ -58,7 +58,7 @@ class CRM
   def modify_existing_contact
     print "Enter the first name of the contact, you would like to modify? "
     user_selection = gets.chomp.to_s
-    contact = Contact.find_by('first_name',user_selection)
+    contact = Contact.find_by(first_name: user_selection)
     if contact == nil
       puts "ops! not a contact!"
     else
@@ -83,7 +83,10 @@ class CRM
       end
       puts "Enter in new value"
       value = gets.chomp.to_s
-      contact.update(attribute,value)
+      hash={}
+      hash[attribute] = value
+
+      contact.update_attributes(hash)
 
     end
   end
@@ -91,7 +94,7 @@ class CRM
   def delete_contact
     print "Enter the first name of the contact, you would like to delete? "
     user_selection = gets.chomp.to_s
-    contact = Contact.find_by('first_name',user_selection)
+    contact = Contact.find_by(first_name: user_selection)
     if contact == nil
       puts "ops! not a contact!"
     else
