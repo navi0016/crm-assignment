@@ -111,11 +111,13 @@ class CRM
     atrribute = gets.chomp.to_s
     print "Enter the value you would like to search by: "
     value = gets.chomp.to_s
-    contact = Contact.find_by(atrribute,value)
-    if contact == nil
+    contacts = Contact.where("#{atrribute}= ?",value)
+    if contacts == nil
       puts "Ops! not a contact"
     else
-      puts contact.inspect
+      contacts.each do |contact|
+        puts contact.inspect
+      end
     end
 
   end
